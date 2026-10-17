@@ -17,6 +17,10 @@ jobs:
           channel: 'stable'
       - name: Get packages
         run: flutter pub get
+      - name: Fix Gradle project
+        run: |
+          flutter create --platforms=android .
+          flutter pub get
       - name: Build APK
         run: flutter build apk --release
       - name: Upload APK
