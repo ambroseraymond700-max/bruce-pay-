@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
@@ -19,7 +19,8 @@ jobs:
         run: flutter pub get
       - name: Fix Gradle project
         run: |
-          flutter create --platforms=android .
+          rm -rf android
+          flutter create --project-name bruce_pay --platforms=android .
           flutter pub get
       - name: Build APK
         run: flutter build apk --release
